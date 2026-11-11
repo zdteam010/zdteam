@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZDTeam weboldala</title>
+    <link rel="icon" type="image/jpeg" href="ZDTEAMLOGO.jpg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b1622; color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+        header { background-color: #102030; padding: 15px 0; border-bottom: 2px solid #00f0ff; box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15); margin-bottom: 45px; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .nav-logo { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #00f0ff; object-fit: cover; }
+        .logo-text { color: #ffffff; font-size: 1.5rem; font-weight: bold; letter-spacing: 1.5px; }
+        .logo-text span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.45); }
+        .page-nav { display: flex; gap: 10px; }
+        .nav-btn { background: transparent; color: #94a3b8; border: 1px solid transparent; padding: 8px 15px; border-radius: 6px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
+        .nav-btn:hover { color: #00f0ff; border-color: #00f0ff; background-color: rgba(0, 240, 255, 0.08); }
+        .nav-btn.active { color: #0b1622; background-color: #00f0ff; box-shadow: 0 0 12px rgba(0, 240, 255, 0.5); }
+        .page-content { display: none; }
+        .page-content.active { display: block; }
+        .hero-box { text-align: center; padding: 20px 20px 40px 20px; }
+        .main-logo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; margin-bottom: 25px; border: 3px solid #00f0ff; box-shadow: 0 0 25px rgba(0, 240, 255, 0.35), 0 0 45px rgba(255, 0, 229, 0.2); transition: transform 0.3s ease; }
+        .main-logo:hover { transform: scale(1.04); }
+        .hero-box h1 { font-size: 2.6rem; color: #ffffff; margin-bottom: 15px; letter-spacing: 1px; }
+        .hero-box p { font-size: 1.15rem; color: #cbd5e1; max-width: 600px; margin: 0 auto 30px auto; }
+        .games-section { margin: 30px auto 35px auto; max-width: 650px; }
+        .games-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; color: #00f0ff; margin-bottom: 15px; font-weight: bold; }
+        .games-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .game-tag { background-color: #102030; color: #f8fafc; border: 1px solid #1e3a5f; border-left: 3px solid #ff00e5; padding: 8px 14px; border-radius: 6px; font-size: 0.95rem; font-weight: 500; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+        .game-tag:hover { transform: translateY(-2px); border-color: #00f0ff; box-shadow: 0 4px 12px rgba(0, 240, 255, 0.2); }
+        .social-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { display: inline-block; color: #ffffff; padding: 14px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1rem; transition: all 0.2s ease; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-yt { background-color: #e61919; box-shadow: 0 4px 15px rgba(230, 25, 25, 0.35); }
+        .btn-yt:hover { background-color: #ff2a2a; }
+        .btn-tw { background-color: #9146FF; box-shadow: 0 4px 15px rgba(145, 70, 255, 0.35); }
+        .btn-tw:hover { background-color: #772ce8; }
+        .btn-dc { background-color: #5865F2; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.35); }
+        .btn-dc:hover { background-color: #4752C4; }
+        .card { background-color: #102030; padding: 35px; border-radius: 12px; border: 1px solid #1e3a5f; box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4); }
+        h2 { color: #ffffff; font-size: 1.8rem; margin-bottom: 20px; border-left: 4px solid #00f0ff; padding-left: 12px; }
+        .schedule-list { list-style: none; }
+        .schedule-list li { padding: 14px 0; border-bottom: 1px solid #1e3a5f; font-size: 1.05rem; }
+        .schedule-list li:last-child { border-bottom: none; }
+        .schedule-list strong { color: #00f0ff; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="brand">
+                <img src="ZDTEAMLOGO.jpg" alt="ZDTeam Logó" class="nav-logo">
+                <div class="logo-text">ZD<span>Team</span></div>
+            </div>
+            <nav class="page-nav">
+                <button type="button" id="btn1" class="nav-btn active" onclick="mutassOldalt(1)">1. Főoldal</button>
+                <button type="button" id="btn2" class="nav-btn" onclick="mutassOldalt(2)">2. Stream Naptár</button>
+                <button type="button" id="btn3" class="nav-btn" onclick="mutassOldalt(3)">3. Hírek</button>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div id="oldal1" class="page-content active">
+            <section class="hero-box">
+                <img src="ZDTEAMLOGO.jpg" alt="ZDTeam Fő Logó" class="main-logo">
+                <h1>Üdv a ZDTeam oldalán!</h1>
+                <p>Sziasztok, egy kezdő streamer vagyok! Ezt a weboldalt azért hoztam létre, hogy láthassátok az újdonságokat, a stream naptárat és a további új híreket!</p>
+                <div class="games-section">
+                    <div class="games-title">🎮 Amikkel a csatornán találkozhattok</div>
+                    <div class="games-grid">
+                        <span class="game-tag">World of Tanks</span>
+                        <span class="game-tag">Phasmophobia</span>
+                        <span class="game-tag">Minecraft</span>
+                        <span class="game-tag">Farming Simulator 25</span>
+                        <span class="game-tag">War Thunder</span>
+                        <span class="game-tag">Metin2 (több szerver)</span>
+                        <span class="game-tag">GTA V Online & RP</span>
+                    </div>
+                </div>
+                <div class="social-buttons">
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn btn-yt">▶ YouTube</a>
+                    <a href="https://twitch.tv" target="_blank" rel="noopener noreferrer" class="btn btn-tw">📺 Twitch</a>
+                    <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="btn btn-dc">💬 Discord</a>
+                </div>
+            </section>
+        </div>
+        <div id="oldal2" class="page-content">
+            <section class="card">
+                <h2>Stream Naptár</h2>
+                <ul class="schedule-list">
+                    <li><strong>Hétfő:</strong> 18:00 - Esti játék</li>
+                    <li><strong>Kedd:</strong> 18:00 - Esti játék</li>
+                    <li><strong>Szerda:</strong> 18:00 - Esti játék</li>
+                    <li><strong>Csütörtök:</strong> 18:00 - Esti játék</li>
+                    <li><strong>Péntek:</strong> 18:00 - Esti játék</li>
+                </ul>
+            </section>
+        </div>
+        <div id="oldal3" class="page-content">
+            <section class="card">
+                <h2>Legújabb Hírek</h2>
+                <p>Elindult a ZDTeam hivatalos weboldala! Hamarosan érkezem az első nagy nyereményjátékkal.</p>
+				<p>Hamarosan érkezek a streamekkel! Mindenkit sok szretettel várok!</p>
+            </section>
+        </div>
+    </main>
+    <script>
+        function mutassOldalt(szam) {
+            document.getElementById('oldal1').style.display = (szam === 1) ? 'block' : 'none';
+            document.getElementById('oldal2').style.display = (szam === 2) ? 'block' : 'none';
+            document.getElementById('oldal3').style.display = (szam === 3) ? 'block' : 'none';
+            document.getElementById('btn1').className = (szam === 1) ? 'nav-btn active' : 'nav-btn';
+            document.getElementById('btn2').className = (szam === 2) ? 'nav-btn active' : 'nav-btn';
+            document.getElementById('btn3').className = (szam === 3) ? 'nav-btn active' : 'nav-btn';
+        }
+    </script>
+</body>
+</html>
